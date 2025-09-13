@@ -1,0 +1,20 @@
+package com.shortURL;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Encoding {
+    private static final String ALPHABETS = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    public String generateUrl(Long number) {
+        StringBuilder shortUrl = new StringBuilder();
+        Long length = 36L;
+        if(number == 0)return "a";
+        while (number != 0) {
+            long mod = number % length;
+            shortUrl.append(ALPHABETS.charAt((int)mod));
+            number = number / 36;
+        }
+        return shortUrl.reverse().toString();
+    }
+}
